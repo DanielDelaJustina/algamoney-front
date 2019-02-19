@@ -4,5 +4,42 @@
 }
 
 .navbar-toggle {
-  color: white;
+  color: #fff;
+}
+
+.navbar-menu {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 250px;
+  margin: 0;
+  z-index: 9998; /*prioridade desta forma aparece por cima de todos os componentes*/
+  background-color: #3a3633;
+  list-style: none; /*Remover bolinha de itens*/
+  padding: 0;
+}
+
+.navbar-user {
+  padding: 15px; /*Espaçamento de todos os lados do componente semelhante o margin*/
+  margin-bottom: 15px;
+  color: #fff;
+  border-bottom: 1px solid #525151;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.navbar-menuitem {
+  padding: 15px;
+}
+
+/*o componente "a" que fica dentro da class navbar-menuitem*/
+.navbar-menuitem a {
+  color: #c0bbb7;
+  text-decoration: none;
+}
+
+/*Quando passar o mouse sobre o menu*/
+.navbar-menuitem a:hover { 
+  color: #fff;
 }
