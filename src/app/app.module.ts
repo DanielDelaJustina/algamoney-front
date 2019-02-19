@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { InputTextModule } from 'primeng/components/inputtext/inputtext';
@@ -14,7 +15,8 @@ import { TableModule } from 'primeng/table';
     BrowserModule,
     InputTextModule,
     ButtonModule,
-    TableModule
+    TableModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
