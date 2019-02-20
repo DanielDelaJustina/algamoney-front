@@ -42,11 +42,11 @@
             <tr>
                 <td>{{lanc.pessoa}}</td>
                 <td>{{lanc.descricao}}</td>
-                <td>{{lanc.dataVencimento}}</td>
-                <td>{{lanc.dataPagamento}}</td>
+                <td>{{lanc.dataVencimento | date:'dd/MM/y'}}</td>
+                <td>{{lanc.dataPagamento | date:'dd/MM/y'}}</td>
                 <td class="col-valor">
                   <span [style.color]="lanc.tipo === 'DESPESA' ? 'red' : 'blue'">
-                    {{lanc.valor}}
+                    {{lanc.valor | currency:'BRL':true:'1.1-2' }}
                   </span>
                 </td>
                 <td class="col-acoes">
