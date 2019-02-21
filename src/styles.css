@@ -52,3 +52,7 @@ label {
 #header-valor {
   text-align: center;
 }
+
+.valor {
+  text-align: right;
+}

@@ -12,6 +12,17 @@ export class LancamentoCadastroComponent implements OnInit {
     {label: 'Receita', value: 'DESPESA'}
   ];
 
+  categorias = [
+    {label: 'Alimentação', value: 1},
+    {label: 'Transporte', value: 2}
+  ];
+
+  pessoas = [
+    {label: 'João da Silva', value: 1},
+    {label: 'Daniel Dela Justina', value: 2},
+    {label: 'Aline R. dos Santos', value: 3}
+  ];
+
   constructor() { }
 
   ngOnInit() {
