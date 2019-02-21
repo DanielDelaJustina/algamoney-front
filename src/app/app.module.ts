@@ -10,13 +10,18 @@ import { TooltipModule } from 'primeng/tooltip';
 import { LancamentosPesquisaComponent } from './lancamentos-pesquisa/lancamentos-pesquisa.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.component';
+import { LancamentoCadastroComponent } from './lancamento-cadastro/lancamento-cadastro.component';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CalendarModule } from 'primeng/calendar';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 @NgModule({
   declarations: [
     AppComponent,
     LancamentosPesquisaComponent,
     NavbarComponent,
-    PessoasPesquisaComponent
+    PessoasPesquisaComponent,
+    LancamentoCadastroComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +29,10 @@ import { PessoasPesquisaComponent } from './pessoas-pesquisa/pessoas-pesquisa.co
     ButtonModule,
     TableModule,
     BrowserAnimationsModule,
-    TooltipModule
+    TooltipModule,
+    InputTextareaModule,
+    CalendarModule,
+    SelectButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
