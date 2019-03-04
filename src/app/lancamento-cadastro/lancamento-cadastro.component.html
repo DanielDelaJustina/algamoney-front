@@ -22,13 +22,27 @@
 
       <div class="ui-g-12 ui-md-9 ui-fluid"> 
           <label>Descrição</label>
-          <input pInputText type="text">           
+          <input pInputText type="text" name="descricao" 
+          ngModel #desc="ngModel" required minlength="5">   
+          
+          <div *ngIf="desc.hasError('required') && desc.dirty" 
+            class="ui-messages ui-messages-error">
+            Informe uma descrição
+          </div>
+
+          <div *ngIf="desc.hasError('minlength') && desc.dirty" 
+            class="ui-messages ui-messages-error">
+              Mínimo de {{desc.errors.minlength.requiredLength}} caracteres, você digitou apenas
+              {{desc.errors.minlength.actualLength}}
+          </div>
       </div>
 
       <div class="ui-g-12 ui-md-3 ui-fluid"> 
           <label>Valor</label>
           <input pInputText type="text" 
                  placeholder="0,00"
+                 name="valor"
+                 ngModel
                  currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',', allowNegative: false }"/>        
       </div>
 
