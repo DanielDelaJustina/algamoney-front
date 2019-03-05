@@ -1,5 +1,5 @@
 <div class="container">
-  <form>
+  <form #formulario="ngForm">
 
     <div class="ui-g">
       <div class="ui-g-12">
@@ -12,7 +12,11 @@
 
       <div class="ui-g-6 ui-md-3 ui-fluid"> 
         <label>Vencimento</label>
-        <p-calendar dateFormat="dd/mm/yy" [showIcon]=true></p-calendar>          
+        <p-calendar dateFormat="dd/mm/yy" [showIcon]=true 
+          name="vencimento" ngModel #vencimento="ngModel" required></p-calendar>   
+          
+          <app-message [control]="vencimento" error="required"
+          text="Informe uma data de vencimento"></app-message>
       </div>
 
       <div class="ui-g-6 ui-md-3 ui-fluid"> 
@@ -44,13 +48,16 @@
 
       <div class="ui-g-12 ui-md-6 ui-fluid"> 
           <label>Categoria</label>
-          <p-dropdown [options]="categorias" [autoWidth]=false placeholder="Selecione">
-          </p-dropdown>         
+          <p-dropdown [options]="categorias" [autoWidth]=false placeholder="Selecione" 
+           name="categoria" ngModel #categoria="ngModel" required>
+          </p-dropdown>    
+          
       </div>
 
       <div class="ui-g-12 ui-md-6 ui-fluid"> 
           <label>Pessoa</label>
-          <p-dropdown [options]="pessoas" [filter]=true [autoWidth]=false placeholder="Selecione">
+          <p-dropdown [options]="pessoas" [filter]=true [autoWidth]=false placeholder="Selecione"
+            name="pessoa" ngModel #pessoa="ngModel" required>
             </p-dropdown>             
       </div>
 
@@ -60,7 +67,7 @@
       </div>
 
       <div class="ui-g-12">
-        <button style="margin:2px" pButton type="submit" label="Salvar"></button>
+        <button style="margin:2px" pButton type="submit" label="Salvar" [disabled]="formulario.invalid"></button>
         <button style="margin:2px" class="ui-button-success" pButton type="button" label="Novo"></button>
         <a style="margin:0 4px" href="#" >Voltar para a pesquisa</a>
       </div>
