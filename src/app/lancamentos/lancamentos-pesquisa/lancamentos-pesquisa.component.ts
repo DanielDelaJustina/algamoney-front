@@ -10,9 +10,8 @@ import { LancamentoService, LancamentoFiltro } from '../lancamento.service';
 export class LancamentosPesquisaComponent  implements OnInit {
 
   lancamentos = [];
-  descricao: string;
-  dataVencimentoInicio: Date;
-  dataVencimentoFim: Date;
+  total: number;
+  filtro = new LancamentoFiltro();
 
   constructor(private lancamentoService: LancamentoService) {  }
 
@@ -21,13 +20,10 @@ export class LancamentosPesquisaComponent  implements OnInit {
   }
 
   pesquisar() {
-    const lancamentoFiltro: LancamentoFiltro = {descricao: this.descricao,
-      dataVencimentoInicio: this.dataVencimentoInicio,
-      dataVencimentoFim: this.dataVencimentoFim };
-
-    this.lancamentoService.pesquisar(lancamentoFiltro)
+    this.lancamentoService.pesquisar(this.filtro)
       .then((data) => {
         this.lancamentos = data.content;
+        this.total = data.totalElements;
       }
     );
   }
