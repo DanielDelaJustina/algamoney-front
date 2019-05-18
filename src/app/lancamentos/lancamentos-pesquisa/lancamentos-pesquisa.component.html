@@ -31,7 +31,8 @@
       <p-table [value]="lancamentos" [paginator]="true" 
                [rows]="filtro.itensPorPagina" [responsive]="true"
                [lazy]="true" [totalRecords]="total"
-               (onLazyLoad)="aoMudarPagina($event)">
+               (onLazyLoad)="aoMudarPagina($event)"
+               #tabela>
         <ng-template pTemplate="header">
             <tr>
                 <th>Pessoa</th>
@@ -57,8 +58,13 @@
                   <button style="margin:2px" pButton icon="pi pi-pencil" pTooltip="Editar"
                     tooltipPosition="top"></button>
       
-                  <button style="margin:2px" pButton icon="pi pi-trash"
-                    pTooltip="Excluir" tooltipPosition="top"></button>
+                  <button style="margin:2px" 
+                          pButton icon="pi pi-trash"
+                          pTooltip="Excluir" 
+                          tooltipPosition="top"
+                          (click)="excluir(lanc)"
+                          >
+                  </button>
                 </td>
             </tr>
         </ng-template>
