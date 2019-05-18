@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LancamentoService, LancamentoFiltro } from '../lancamento.service';
 import { LazyLoadEvent } from 'primeng/components/common/api';
+import toastr from 'toastr';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -33,6 +34,10 @@ export class LancamentosPesquisaComponent {
 
   excluir(lancamento) {
     this.lancamentoService.excluir(lancamento.id)
-    .then(() => this.grid.first = 0);
+    .then(() => {
+      this.grid.first = 0;
+      this.pesquisar(0);
+      toastr.success('Exclussão realizada com sucesso!');
+    });
   }
 }
