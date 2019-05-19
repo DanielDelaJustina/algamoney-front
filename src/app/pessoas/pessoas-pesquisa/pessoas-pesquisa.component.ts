@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { PessoasFiltro, PessoaService } from '../pessoa.service';
-import { LazyLoadEvent } from 'primeng/components/common/api';
+import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
+import toastr from 'toastr';
 
 @Component({
   selector: 'app-pessoas-pesquisa',
@@ -12,8 +14,11 @@ export class PessoasPesquisaComponent {
   pessoas = [];
   total: number;
   filtro = new PessoasFiltro();
+  @ViewChild('tabela') grid;
 
-  constructor(private pessoasService: PessoaService) {  }
+  constructor(private pessoasService: PessoaService,
+              private confirmationService: ConfirmationService,
+              private errorHandler: ErrorHandlerService) {  }
 
 
   pesquisar(pagina = 0) {
@@ -31,4 +36,21 @@ export class PessoasPesquisaComponent {
     this.pesquisar(pagina);
   }
 
+  excluir(pessoa) {
+
+    this.confirmationService.confirm({
+      message: 'Deseja realmente excluir o registro?',
+      accept: () => {
+        this.pessoasService.excluir(pessoa.id)
+        .then(() => {
+          this.grid.first = 0;
+          this.pesquisar(0);
+          toastr.success('Exclussão realizada com sucesso!');
+        })
+        .catch((error) => {
+          this.errorHandler.handle(error);
+        });
+      }
+    });
+  }
 }
