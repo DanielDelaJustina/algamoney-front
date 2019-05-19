@@ -53,4 +53,16 @@ export class PessoasPesquisaComponent {
       }
     });
   }
+
+  mudarStatus(pessoa) {
+    this.pessoasService.mudarStatus(pessoa.id, !pessoa.ativo)
+      .then(() => {
+        toastr.success('Mudança de status foi realizada com sucesso!');
+        pessoa.ativo = !pessoa.ativo;
+      }
+    )
+    .catch((error) => {
+      this.errorHandler.handle(error);
+    });
+  }
 }

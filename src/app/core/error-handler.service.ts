@@ -9,13 +9,13 @@ export class ErrorHandlerService {
   constructor() { }
 
   handle(errorResponse: any) {
-    let msg: string;
+    let msg = '';
 
-    if (errorResponse === 'string') {
-      msg = errorResponse;
-    } else {
-      msg = 'Erro ao buscar serviço';
+    if (errorResponse.status >= 400 && errorResponse.status <= 499) {
+        msg = errorResponse.error.length > 0 ? errorResponse.error[0].msgUser : '' ;
     }
+
+    msg = msg === '' ? 'Erro ao buscar serviço' : msg;
     toastr.error(msg);
   }
 }

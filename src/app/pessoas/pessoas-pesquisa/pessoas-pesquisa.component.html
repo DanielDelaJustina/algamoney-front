@@ -38,7 +38,7 @@
                 <td>{{pes.endereco.cidade}}</td>
                 <td class="col-center">{{pes.endereco.estado}}</td>
                 <td class="col-center" [pTooltip]="pes.ativo ? 'Inativar' : 'Ativar'" tooltipPosition="top">
-                  <a href="javascript:;">{{pes.ativo ? 'Ativo' : 'Inativo'}}</a>
+                  <a href="javascript:;" (click)="mudarStatus(pes)">{{pes.ativo ? 'Ativo' : 'Inativo'}}</a>
                 </td>
                 <td class="col-acoes">
                   <button style="margin:2px" pButton icon="pi pi-pencil" pTooltip="Editar"
