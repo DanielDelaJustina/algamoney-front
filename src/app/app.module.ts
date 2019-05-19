@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
@@ -13,6 +13,11 @@ import { CoreModule } from './core/core.module';
 import { LancamentoService } from './lancamentos/lancamento.service';
 import { HttpClientModule } from '@angular/common/http';
 import { PessoaService } from './pessoas/pessoa.service';
+import { USE_VALUE } from '@angular/core/src/di/injector';
+import pt from '@angular/common/locales/pt';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(pt, 'pt-BR');
 
 @NgModule({
   declarations: [
@@ -32,7 +37,8 @@ import { PessoaService } from './pessoas/pessoa.service';
   providers: [
     LancamentoService,
     PessoaService,
-    ConfirmationService
+    ConfirmationService,
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ],
   bootstrap: [AppComponent]
 })
