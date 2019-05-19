@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { LancamentoService, LancamentoFiltro } from '../lancamento.service';
 import { LazyLoadEvent, ConfirmationService } from 'primeng/components/common/api';
 import toastr from 'toastr';
+import { ErrorHandlerService } from 'src/app/core/error-handler.service';
 
 @Component({
   selector: 'app-lancamentos-pesquisa',
@@ -16,7 +17,8 @@ export class LancamentosPesquisaComponent {
   @ViewChild('tabela') grid;
 
   constructor(private lancamentoService: LancamentoService,
-              private confirmationService: ConfirmationService) {  }
+              private confirmationService: ConfirmationService,
+              private errorHandler: ErrorHandlerService) {  }
 
   pesquisar(pagina = 0) {
     this.filtro.pagina = pagina;
@@ -25,7 +27,10 @@ export class LancamentosPesquisaComponent {
         this.lancamentos = data.content;
         this.total = data.totalElements;
       }
-    );
+    )
+    .catch((error) => {
+      this.errorHandler.handle(error);
+    });
   }
 
   aoMudarPagina(event: LazyLoadEvent) {
@@ -43,6 +48,9 @@ export class LancamentosPesquisaComponent {
           this.grid.first = 0;
           this.pesquisar(0);
           toastr.success('Exclussão realizada com sucesso!');
+        })
+        .catch((error) => {
+          this.errorHandler.handle(error);
         });
       }
     });
