@@ -3,6 +3,8 @@ import { CategoriaService } from 'src/app/categorias/categoria.service';
 import { PessoaService } from 'src/app/pessoas/pessoa.service';
 import { Lancamento } from './lancamento';
 import { FormControl } from '@angular/forms';
+import { LancamentoService } from '../lancamento.service';
+import toastr from 'toastr';
 
 @Component({
   selector: 'app-lancamento-cadastro',
@@ -11,6 +13,7 @@ import { FormControl } from '@angular/forms';
 })
 export class LancamentoCadastroComponent implements OnInit {
 
+  inSalve = false;
   tipos = [
     {label: 'Receita', value: 'RECEITA'},
     {label: 'Despesa', value: 'DESPESA'}
@@ -23,6 +26,7 @@ export class LancamentoCadastroComponent implements OnInit {
   constructor(
     private categoriaService: CategoriaService,
     private pessoaService: PessoaService,
+    private lancamentoService: LancamentoService,
     private errorHandler: ErrorHandler
   ) {}
 
@@ -52,7 +56,18 @@ export class LancamentoCadastroComponent implements OnInit {
   }
 
   salvar(form: FormControl) {
-    console.log(form);
+    this.inSalve = true;
+    this.lancamentoService.adicionar(this.lancamentos)
+    .then((res) => {
+      console.log(res);
+      toastr.success(`Lancamento ${res.descricao} - ${res.id} adicionado com sucesso!`);
+      form.reset();
+      this.lancamentos = new Lancamento();
+    })
+    .catch(erro => this.errorHandler.handleError(erro))
+    .finally(() =>
+      this.inSalve = false
+    );
   }
 
 }
