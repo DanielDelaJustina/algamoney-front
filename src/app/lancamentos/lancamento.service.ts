@@ -64,4 +64,45 @@ export class LancamentoService {
     .toPromise()
     .then();
   }
+
+  atualizar(lancamento: Lancamento): Promise<any>  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+      })
+    };
+
+    return this.http.put(`${this.lancamentosURL}/${lancamento.id}`,
+                          JSON.stringify(lancamento),
+                          httpOptions)
+    .toPromise()
+    .then();
+
+  }
+
+  buscarPorId(id: number): Promise<any>  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+      })
+    };
+    return this.http.get(`${this.lancamentosURL}/${id}`, httpOptions)
+    .toPromise();
+  }
+
+  converterStringsParaDatas(lancamentos: Lancamento[]) {
+    for (const lancamento of lancamentos) {
+      lancamento.datavencimento = moment(lancamento.datavencimento,
+        'YYYY-MM-DD').toDate();
+
+      if (lancamento.datapagamento) {
+        lancamento.datapagamento = moment(lancamento.datapagamento,
+          'YYYY-MM-DD').toDate();
+      }
+    }
+
+    return lancamentos;
+  }
 }

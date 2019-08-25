@@ -82,4 +82,31 @@ export class PessoaService {
     .toPromise()
     .then();
   }
+
+  atualizar(pessoa: Pessoa): Promise<any>  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+      })
+    };
+
+    return this.http.put(`${this.pessoasURL}/${pessoa.id}`,
+                          JSON.stringify(pessoa),
+                          httpOptions)
+    .toPromise()
+    .then();
+
+  }
+
+  buscarPorId(id: number): Promise<any>  {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        Authorization: 'Basic YWRtaW5AYWxnYW1vbmV5LmNvbTphZG1pbg=='
+      })
+    };
+    return this.http.get(`${this.pessoasURL}/${id}`, httpOptions)
+    .toPromise();
+  }
 }

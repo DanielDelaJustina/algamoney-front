@@ -41,8 +41,14 @@
                   <a href="javascript:;" (click)="mudarStatus(pes)">{{pes.ativo ? 'Ativo' : 'Inativo'}}</a>
                 </td>
                 <td class="col-acoes">
-                  <button style="margin:2px" pButton icon="pi pi-pencil" pTooltip="Editar"
-                    tooltipPosition="top"></button>
+                  <button 
+                    style="margin:2px" 
+                    pButton 
+                    icon="pi pi-pencil" 
+                    pTooltip="Editar"
+                    tooltipPosition="top"
+                    [routerLink]="['/pessoas', pes.id ]"
+                  ></button>
       
                   <button 
                     style="margin:2px" 
