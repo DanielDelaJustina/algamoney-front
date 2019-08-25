@@ -16,9 +16,11 @@ import { InputMaskModule } from 'primeng/inputmask';
 
 import { CurrencyMaskModule } from 'ng2-currency-mask';
 import { SharedModule } from '../shared/shared.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
+    RouterModule,
     CommonModule,
     FormsModule,
     InputTextModule,

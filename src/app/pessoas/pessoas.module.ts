@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PessoasCadastroComponent } from './pessoas-cadastro/pessoas-cadastro.component';
@@ -25,6 +26,7 @@ import { SharedModule } from '../shared/shared.module';
     PessoasPesquisaComponent
   ],
   imports: [
+    RouterModule,
     CommonModule,
     FormsModule,
     InputTextModule,

@@ -8,6 +8,7 @@ import { PessoaService } from '../pessoas/pessoa.service';
 import { ConfirmationService } from 'primeng/components/common/api';
 import pt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 registerLocaleData(pt, 'pt-BR');
 @NgModule({
@@ -16,6 +17,7 @@ registerLocaleData(pt, 'pt-BR');
   ],
   imports: [
     CommonModule,
+    RouterModule,
     ConfirmDialogModule
   ],
   exports: [
